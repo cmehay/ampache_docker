@@ -1,0 +1,28 @@
+[supervisord]
+nodaemon=true
+
+[program:php-fpm]
+command = /usr/sbin/php5-fpm -F
+user = root
+autostart = true
+autorestart = true
+
+[program:nginx]
+command = /usr/sbin/nginx 
+user = root
+autostart = true
+autorestart = true
+
+[program:mariadb]
+command=/usr/bin/mysqld_safe
+username=www-data
+autostart=true
+autorestart=true
+redirect_stderr=true
+
+[program:websocket]
+command=/usr/bin/php /var/www/ampache/bin/websocket_run.inc -p 8100
+username=www-data
+autostart=false
+autorestart=true
+redirect_stderr=true
